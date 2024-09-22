@@ -1,0 +1,60 @@
+name: "2_transformworkflowtriton"
+input {
+  name: "item_id"
+  data_type: TYPE_INT32
+  dims: -1
+}
+input {
+  name: "item_category"
+  data_type: TYPE_INT32
+  dims: -1
+}
+input {
+  name: "item_shop"
+  data_type: TYPE_INT32
+  dims: -1
+}
+input {
+  name: "item_brand"
+  data_type: TYPE_INT32
+  dims: -1
+}
+output {
+  name: "item_id"
+  data_type: TYPE_INT32
+  dims: -1
+}
+output {
+  name: "item_category"
+  data_type: TYPE_INT32
+  dims: -1
+}
+output {
+  name: "item_shop"
+  data_type: TYPE_INT32
+  dims: -1
+}
+output {
+  name: "item_brand"
+  data_type: TYPE_INT32
+  dims: -1
+}
+instance_group {
+}
+parameters {
+  key: "cats"
+  value {
+  }
+}
+parameters {
+  key: "conts"
+  value {
+  }
+}
+parameters {
+  key: "python_module"
+  value {
+    string_value: "merlin.systems.triton.models.workflow_model"
+  }
+}
+backend: "python"
