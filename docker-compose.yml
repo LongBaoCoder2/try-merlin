@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  merlin-tensorflow-cpu:
+    image: nvcr.io/nvidia/merlin/merlin-tensorflow:23.12
+    ports:
+      - "8888:8888" # Jupyter Lab
+      - "8797:8787" # Dask Scheduler
+      - "8796:8786" # Dask Workers
+    ipc: host
+    cap_add:
+      - SYS_NICE
+    environment:
+      - NUMBA_DISABLE_JIT="1"
+      - NUMBA_CUDA_DRIVER="0"
+      - NUMBA_DISABLE_CUDA="1"
+    volumes:
+      - ./data:/try-merlin/data
+      - ./src:/try-merlin/src
+    command: >
+      bash -c "
+      pip install --upgrade pip && 
+      pip install pandas==2.0.0 && 
+      pip install -U numba &&
+      pip install 'dask[dataframe]' --upgrade &&
+      pip install pyarrow fastparquet tensorflow feast faiss-cpu seedir &&
+      cd / && 
+      jupyter-lab --allow-root --ip='0.0.0.0' --NotebookApp.token=''
+      "
