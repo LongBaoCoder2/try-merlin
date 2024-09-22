@@ -1,1 +1,0 @@
-{"feature": [{"name": "click/binary_classification_task", "type": "FLOAT", "annotation": {"extraMetadata": [{"_dims": [], "is_list": false, "is_ragged": false, "dtype_item_size": 32.0}]}}]}
