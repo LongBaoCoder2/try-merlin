@@ -160,8 +160,19 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 # .idea/
-/src/categories
+/explore/categories
 *.parquet
 */*.parquet
-/src/*/variables/
-/src/query_tower/variables/
+/explore/*/variables/
+/explore/query_tower/variables/
+
+
+# Remove checkpoint
+/explore/dlrm/variables/
+/explore/dlrm/*.pb
+/explore/query_tower/variables/
+/explore/query_tower/*.pb
+
+# Remove data
+/explore/feast_repo/feature_repo/data
+/explore/faiss_index
