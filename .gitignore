@@ -168,11 +168,16 @@ cython_debug/
 
 
 # Remove checkpoint
-/explore/dlrm/variables/
-/explore/dlrm/*.pb
+/explore/*/variables/
+/explore/*/*.pb
 /explore/query_tower/variables/
 /explore/query_tower/*.pb
 
 # Remove data
 /explore/feast_repo/feature_repo/data
 /explore/faiss_index
+/explore/poc_ensemble/1_predicttensorflowtriton/1/model.savedmodel/variables
+/explore/poc_ensemble/1_predicttensorflowtriton/1/model.savedmodel/saved_model.pb
+/explore/poc_ensemble/3_predicttensorflowtriton/1/model.savedmodel/saved_model.pb
+/explore/poc_ensemble/3_predicttensorflowtriton/1/model.savedmodel/variables
+/explore/poc_ensemble/executor_model/1/ensemble/index.faiss
