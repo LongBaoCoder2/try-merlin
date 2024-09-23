@@ -1,29 +1,27 @@
 version: "3.8"
 services:
   merlin-tensorflow-cpu:
-    image: nvcr.io/nvidia/merlin/merlin-tensorflow:23.12
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8888:8888" # Jupyter Lab
       - "8797:8787" # Dask Scheduler
       - "8796:8786" # Dask Workers
+      - "3030:8080" # HTTPService
+      - "3031:8081" # GRPCInferenceService
+      - "3032:8082" # Metrics Service
     ipc: host
     cap_add:
       - SYS_NICE
     environment:
-      - NVIDIA_VISIBLE_DEVICES=""
-      - NVIDIA_DRIVER_CAPABILITIES=""
-      - NUMBA_DISABLE_JIT="1"
+      NVIDIA_VISIBLE_DEVICES: ""
+      NVIDIA_DRIVER_CAPABILITIES: ""
+      NUMBA_DISABLE_JIT: "1"
+      NUMBA_DISABLE_CUDA: "1"
     volumes:
-      - ./data:/try-merlin/data
       - ./explore:/try-merlin/explore
+      - ./src:/try-merlin/src
+      - ./script:/try-merlin/script
     command: >
-      bash -c "
-      pip install --upgrade pip && 
-      pip install feast faiss-cpu &&
-      pip install 'dask[dataframe]' --upgrade &&
-      pip install -U pandas &&
-      pip install -U numba &&
-      pip install pyarrow fastparquet seedir &&
-      cd / && 
-      jupyter-lab --allow-root --ip='0.0.0.0' --NotebookApp.token=''
-      "
+      bash -c "/try-merlin/script/start.sh"
